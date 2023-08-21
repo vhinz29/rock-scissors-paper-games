@@ -1,24 +1,48 @@
 print("Hello world")
 import random
+global win, lost
+win,lost,draw = 0,0,0
 
 class user:
     def __init__(self, player , computer):
         self.player = player
         self.computer = computer
+
     # rsp = rock, scissors, paper games
     def rsp_games(self):
-        print(self.player ,self.computer)
+        global win, lost, draw
         player = self.player
         computer = self.computer
-
         if self.player == self.computer:
             print("It's a tie \n")
+            draw += 1
         elif self.player != self.computer:
             if player == "r" and computer == "s" or player == "s" and computer == "p" or player == "p" and computer == "r":
                 print("you won \n")
+                win += 1
             else:
                 # elif player == "s" and computer == "r" or player == "p" and #computer == "s" or player == "r" and computer == "p" :
                 print("you lost \n")
+                lost += 1
+
+    def rsp_name(self):
+        temp_p, temp_c = '',''
+
+        if self.player == 'r':
+            temp_p = 'rock'
+        elif self.player == 's':
+            temp_p = 'scissor'
+        else:
+            temp_p = 'paper'
+
+        if self.computer == 'r':
+            temp_c = 'rock'
+        elif self.computer == 's':
+            temp_c = 'scissor'
+        else:
+            temp_c = 'paper'
+        print(f"player: {temp_p}, computer: {temp_c}")
+
 
 while True:
     select = input("Would you like to play yes[y] or no [n] ?  ")
@@ -30,9 +54,21 @@ while True:
         if player in options:
             computer = random.choice(options)
             user1 = user(player ,computer)
+            user1.rsp_name()
             user1.rsp_games()
         else:
             print("i dont understand this \n")
     else:
         print("i dont understand this \n")
+
+print('player and computer score')
+print(f'player: {win}  computer: {lost}  draw: {draw}')
+
+if win == lost:
+    print("It's a draw")
+elif win > lost:
+    print('player win')
+elif win < lost:
+    print('computer win')
+
 print(f" >>> have a nice day <<< ")

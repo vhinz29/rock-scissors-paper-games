@@ -1,0 +1,38 @@
+print("Hello world")
+import random
+
+class user:
+    def __init__(self, player , computer):
+        self.player = player
+        self.computer = computer
+    # rsp = rock, scissors, paper games
+    def rsp_games(self):
+        print(self.player ,self.computer)
+        player = self.player
+        computer = self.computer
+
+        if self.player == self.computer:
+            print("It's a tie \n")
+        elif self.player != self.computer:
+            if player == "r" and computer == "s" or player == "s" and computer == "p" or player == "p" and computer == "r":
+                print("you won \n")
+            else:
+                # elif player == "s" and computer == "r" or player == "p" and #computer == "s" or player == "r" and computer == "p" :
+                print("you lost \n")
+
+while True:
+    select = input("Would you like to play yes[y] or no [n] ?  ")
+    if select == "n":
+        break
+    elif select == "y":
+        options = ["r", "s", "p"]
+        player = input(f"select if rock [r], scissors [s], paper [p] ==> ")
+        if player in options:
+            computer = random.choice(options)
+            user1 = user(player ,computer)
+            user1.rsp_games()
+        else:
+            print("i dont understand this \n")
+    else:
+        print("i dont understand this \n")
+print(f" >>> have a nice day <<< ")
